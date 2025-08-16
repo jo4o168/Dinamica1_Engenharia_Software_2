@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+// documentacao-dinamica
 // Definição da struct Dados, que representa um livro
 typedef struct {
     char titulo[30];  // título do livro
