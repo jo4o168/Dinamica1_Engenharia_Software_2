@@ -8,14 +8,14 @@ typedef struct {
     char titulo[30];  // título do livro
     char autor[30];   // autor do livro
     int ano;          // ano de publicação
-} ;
+} Dados;
 
 // Função para buscar livro pelo título
 void buscaTitulo(const char *p) {
     FILE *t;
     char titulo[30], autor[30];
     int ano;
-    int e = 0;  // flag para indicar se encontrou o livro
+    int encontrar_livro = 0;  // flag para indicar se encontrou o livro
 
     t = fopen("t.txt", "r");  // abre o arquivo em modo leitura
     if (t == NULL) {
@@ -27,13 +27,13 @@ void buscaTitulo(const char *p) {
     while (fscanf(t, "%29s\n%29s\n%d\n\n", titulo, autor, &ano) == 3) {
         if (strcmp(titulo, p) == 0) {  // compara título do arquivo com a busca
             printf("\nEncontrado:\nTitulo: %s\nAutor: %s\nAno: %d\n", titulo, autor, ano);
-            e = 1;  // marca que encontrou
+            encontrar_livro = 1;  // marca que encontrou
         }
     }
 
     fclose(t);  // fecha o arquivo
 
-    if (e == 0) {
+    if (encontrar_livro == 0) {
         printf("\nTitulo '%s' nao encontrado.\n", p);  // mensagem se não encontrar
     }
 }
@@ -43,7 +43,7 @@ void buscaAutor(const char *p) {
     FILE *t;
     char titulo[30], autor[30];
     int ano;
-    int e = 0;  // flag para indicar se encontrou o autor
+    int encontrar_livro = 0;  // flag para indicar se encontrou o autor
 
     t = fopen("t.txt", "r");  // abre o arquivo em modo leitura
     if (t == NULL) {
@@ -55,13 +55,13 @@ void buscaAutor(const char *p) {
     while (fscanf(t, "%29s\n%29s\n%d\n\n", titulo, autor, &ano) == 3) {
         if (strcmp(autor, p) == 0) {  // compara autor do arquivo com a busca
             printf("\nEncontrado:\nTitulo: %s\nAutor: %s\nAno: %d\n", titulo, autor, ano);
-            e = 1;
+            encontrar_livro = 1;
         }
     }
 
     fclose(t);
 
-    if (e == 0) {
+    if (encontrar_livro == 0) {
         printf("\nAutor '%s' nao encontrado.\n", p);
     }
 }
@@ -71,7 +71,7 @@ void buscaAno(int anoBusca) {
     FILE *t;
     char titulo[30], autor[30];
     int ano;
-    int e = 0;  // flag para indicar se encontrou algum livro
+    int encontrar_livro = 0;  // flag para indicar se encontrou algum livro
 
     t = fopen("t.txt", "r");  // abre arquivo em modo leitura
     if (t == NULL) {
@@ -83,13 +83,13 @@ void buscaAno(int anoBusca) {
     while (fscanf(t, "%29s\n%29s\n%d\n\n", titulo, autor, &ano) == 3) {
         if (ano == anoBusca) {  // compara ano do livro com a busca
             printf("\nEncontrado:\nTitulo: %s\nAutor: %s\nAno: %d\n", titulo, autor, ano);
-            e = 1;
+            encontrar_livro = 1;
         }
     }
 
     fclose(t);
 
-    if (e == 0) {
+    if (encontrar_livro == 0) {
         printf("\nNenhum livro do ano '%d' encontrado.\n", anoBusca);
     }
 }
@@ -100,15 +100,16 @@ int main(void) {
     FILE *t;        // ponteiro para manipulação do arquivo
     int opcao;      // opção escolhida pelo usuário
 
-    printf("OLA, SEJA BEM VINDO A SUA BIBLIOTECA PESSOAL\n");
+    printf("\nOLA, SEJA BEM VINDO A SUA BIBLIOTECA PESSOAL\n");
 
     for (;;) {  // loop infinito do menu
-        printf("\n===== MENU =====\n");
+        printf("\n========== MENU ==========\n");
         printf("1. Adicionar livro\n");
         printf("2. Buscar livro por Titulo\n");
         printf("3. Buscar livro por Autor\n");
         printf("4. Buscar livro por Ano\n");
-        printf("0. Sair\n:");
+        printf("0. Sair\n==========================\n");
+        printf("Digite a opcao: ");
         scanf("%d", &opcao);  // lê a opção do usuário
 
         switch (opcao) {
