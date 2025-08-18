@@ -108,6 +108,7 @@ int main(void) {
         printf("2. Buscar livro por Titulo\n");
         printf("3. Buscar livro por Autor\n");
         printf("4. Buscar livro por Ano\n");
+        printf("5. Retornar\n");
         printf("0. Sair\n==========================\n");
         printf("Digite a opcao: ");
         scanf("%d", &opcao);  // lê a opção do usuário
