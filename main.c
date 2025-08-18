@@ -8,7 +8,7 @@ typedef struct {
     char titulo[30];  // título do livro
     char autor[30];   // autor do livro
     int ano;          // ano de publicação
-} Dados;
+} ;
 
 // Função para buscar livro pelo título
 void buscaTitulo(const char *p) {
